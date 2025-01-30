@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores para Viky&lt;3</title>
+    <style>
+        /* Estilo general del cuerpo */
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: 
+                linear-gradient(to bottom, #0a0a33 0%, #003366 60%, #003366 70%, #1a6600 85%, #155500 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
+
+        /* Estilo para estrellas */
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 
+                0px 0px 3px rgba(255, 255, 255, 0.8),
+                0px 0px 6px rgba(255, 255, 255, 0.5);
+            animation: twinkle 2s infinite ease-in-out alternate;
+        }
+
+        /* Estilo para flores */
+        .flower {
+            position: absolute;
+            bottom: 0;
+            width: 10px;
+            height: 10px;
+            background-color: yellow; /* Centro de la flor */
+            border-radius: 50%;
+        }
+
+        /* Pétalos de la flor */
+        .flower .petal {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #C8A2C8;
+            border-radius: 50%;
+        }
+
+        /* Posiciones de cada pétalo */
+        .flower .petal1 { /* Pétalo superior */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -150%);
+        }
+        .flower .petal2 { /* Pétalo derecho */
+            top: 50%;
+            left: 50%;
+            transform: translate(50%, -50%);
+        }
+        .flower .petal3 { /* Pétalo inferior */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+        .flower .petal4 { /* Pétalo izquierdo */
+            top: 50%;
+            left: 50%;
+            transform: translate(-150%, -50%);
+        }
+
+        /* Tallo de la flor */
+        .flower::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 4px;
+            width: 2px;
+            height: 12px;
+            background-color: green;
+        }
+
+        /* Animación para que las estrellas parpadeen */
+        @keyframes twinkle {
+            0% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0.2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Flores para Viky&lt;3</h1>
+
+    <script>
+        // JavaScript para agregar estrellas y flores al azar
+        document.addEventListener("DOMContentLoaded", function () {
+            const starCount = 100; // Número de estrellas
+            const flowerCount = 100; // Número de flores
+            const body = document.body;
+
+            // Crear estrellas
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement("div");
+                star.classList.add("star");
+
+                // Genera posiciones aleatorias en la parte superior (cielo)
+                star.style.top = Math.random() * (window.innerHeight * 0.85) + "px";
+                star.style.left = Math.random() * window.innerWidth + "px";
+
+                body.appendChild(star);
+            }
+
+            // Crear flores
+            for (let i = 0; i < flowerCount; i++) {
+                const flower = document.createElement("div");
+                flower.classList.add("flower");
+
+                // Crear y posicionar los pétalos
+                for (let j = 1; j <= 4; j++) {
+                    const petal = document.createElement("div");
+                    petal.classList.add(`petal`, `petal${j}`);
+                    flower.appendChild(petal);
+                }
+
+                // Genera posiciones aleatorias en la parte inferior (suelo)
+                flower.style.left = Math.random() * window.innerWidth + "px";
+                flower.style.bottom = Math.random() * (window.innerHeight * 0.15) + "px";
+
+                body.appendChild(flower);
+            }
+        });
+    </script>
+</body>
+</html>
